@@ -22,6 +22,14 @@ app.get('/', function (request, response) {
 app.get('/quotes/random', (req, res) => {
   res.json(pickFromArray(quotes));
 });
+
+app.get('/quotes/search', (req, res) => {
+  const searchQuotes = req.query.term;
+  if (!searchQuotes) {
+    return res.sendStatus(400);
+  }
+  res.json(searchQuotes);
+});
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
