@@ -28,7 +28,13 @@ app.get('/quotes/search', (req, res) => {
   if (!searchQuotes) {
     return res.sendStatus(400);
   }
-  res.json(searchQuotes);
+  const searchResult = quotes.filter(
+    (data) =>
+      data.quote.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      data.author.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  res.json(searchResult);
 });
 //...END OF YOUR CODE
 
